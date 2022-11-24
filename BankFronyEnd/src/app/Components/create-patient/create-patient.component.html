@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<section class="vh-100 gradient-custom">
+    <div class="container" style="background-color: rgb(126, 192, 197);width: 100%">
+        <div class="container-fluid">
+            <div style="padding-left: 80px;padding-right: 80px;padding-top: 50px; ">
+                <table class="table table-striped table-dark ">
+                    <thead>
+                        <tr>
+                            <th scope="col ">#</th>
+                            <th scope="col ">AccountType</th>
+                            <th scope="col ">LoanType</th>
+                            <th scope="col ">RateOfIntrest</th>
+                            <th scope="col ">Amount</th>
+                            <th scope="col ">ApplyLoan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let details of loans; let i=index ">
+                            <th scope="row ">{{i+1}}</th>
+                            <td scope="row ">{{details.accountType}}</td>
+                            <td scope="row ">{{details.loanType}}</td>
+                            <td scope="row ">{{details.rateOfIntrest}}%p.a</td>
+                            <td scope="row ">{{details.amount}}</td>
+                            <td scope="row "><button class="btn btn-primary">Apply</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>
