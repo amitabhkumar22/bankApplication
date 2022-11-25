@@ -1,5 +1,6 @@
 export class baseResponse {
     statusCode: number;
     statusMessage: string;
-    details: any;
+    token: string;
+    userDetails: any;
 }

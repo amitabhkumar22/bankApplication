@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CustomerDetails } from 'src/app/Interfaces/customerDetails';
 import { IUser } from 'src/app/Interfaces/IUser';
 import { LoginCredentials } from 'src/app/Interfaces/login';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   }
   durationInSeconds = 5;
   loginDetails: LoginCredentials;
+  userDetailss: CustomerDetails;
 
   ngOnInit(): void {
   }
@@ -43,9 +45,10 @@ export class LoginComponent implements OnInit {
         res => {
           console.log(res)
           if (res.statusCode == 200) {
-            localStorage.setItem("details", JSON.stringify(res.details));
+            localStorage.setItem("token", res.token);
+            localStorage.setItem("details", JSON.stringify(res.userDetails));
             // document.cookie = 'response=' + JSON.stringify(data);
-            console.info(JSON.stringify(localStorage.getItem("details")))
+            // console.info(localStorage.getItem("details"))
             // this.cookies = JSON.parse(localStorage.getItem("details"))
             // localStorage.setItem('details', res.details)
             const dialogRef = this.dialog.open(AlertDialogComponent, {

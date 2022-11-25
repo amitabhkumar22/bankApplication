@@ -3,9 +3,12 @@
     <div class="container" style="background-color: rgb(126, 192, 197);width: 100%">
         <div class="container-fluid">
             <div style="padding-left: 80px;padding-right: 80px;padding-top: 50px; ">
-                <button class="btn btn-primary">GetAppliedLoans</button>&nbsp;
-                <button class="btn btn-primary">EditProfile</button><br><br>
-                <table class="table table-striped table-dark ">
+                <button [disabled]="personal" (click)="getAppliedLoans()"
+                    class="btn btn-primary">GetAppliedLoans</button>&nbsp;
+                <button class="btn btn-primary">EditProfile</button>&nbsp;
+                <button [disabled]="loanDetails" (click)="ngOnInit()"
+                    class="btn btn-primary">GETALLLOANS</button><br><br>
+                <table *ngIf="loanDetails" class="table table-striped table-dark">
                     <thead>
                         <tr>
                             <th scope="col ">#</th>
@@ -23,7 +26,41 @@
                             <td scope="row ">{{details.loanType}}</td>
                             <td scope="row ">{{details.rateOfIntrest}}%p.a</td>
                             <td scope="row ">{{details.amount}}</td>
-                            <td scope="row "><button class="btn btn-primary">Apply</button></td>
+                            <td scope="row "><button (click)="applyLoan(i)" class="btn btn-primary">Apply</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="showLoanApply">
+                    <input type="text" {{appliyingLoan.accountType}} [disabled]="true">
+                    <input type="text" {{appliyingLoan.loanType}} [disabled]="true">
+                    <input type="text" {{appliyingLoan.rateOfIntrest}}%p.a [disabled]="true">
+                    <input type="text" {{appliyingLoan.amount}} [disabled]="true">
+                    <input type="text" [(ngModel)]="appliyingLoan.years" [disabled]="false">
+                    <button (click)="applyingLoan()">Apply</button>
+                </div>
+                <table *ngIf="personal" class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col ">#</th>
+                            <th scope="col ">AccountType</th>
+                            <th scope="col ">LoanType</th>
+                            <th scope="col ">RateOfIntrest</th>
+                            <th scope="col ">Amount</th>
+                            <th scope="col ">ApplyLoan</th>
+                            <th scope="col ">LoanTakenDate</th>
+                            <th scope="col ">LoanEndDate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let details of userLoans; let i=index ">
+                            <th scope="row ">{{i+1}}</th>
+                            <td scope="row ">{{details.accountType}}</td>
+                            <td scope="row ">{{details.accountType}}</td>
+                            <td scope="row ">{{details.rateOfIntrest}}%p.a</td>
+                            <td scope="row ">{{details.amount}}</td>
+                            <td scope="row ">{{details.years}}</td>
+                            <td scope="row ">{{changeTime(details.loanTakenDate)}}</td>
+                            <td scope="row ">{{changeTime(details.loanEndDate)}}</td>
                         </tr>
                     </tbody>
                 </table>

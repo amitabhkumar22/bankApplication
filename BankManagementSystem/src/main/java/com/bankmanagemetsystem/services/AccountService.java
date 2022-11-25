@@ -8,16 +8,21 @@ import com.bankmanagemetsystem.models.BaseResponse;
 import com.bankmanagemetsystem.models.LoginDetails;
 import com.bankmanagemetsystem.models.UserDetails;
 import com.bankmanagemetsystem.repository.AccountDao;
+import com.bankmanagemetsystem.security.JwtUtil;
+import com.bankmanagemetsystem.utils.PasswordEncDec;
 
 @Service
 public class AccountService {
 
 	@Autowired
 	private AccountDao dao;
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	public BaseResponse registerUser(UserDetails userDetails) throws LoanAppException {
 
 		try {
+			userDetails.setPassword(PasswordEncDec.encryptingPassword(userDetails.getPassword()));
 			userDetails.setCreatedTimeStamp(System.currentTimeMillis());
 			userDetails.setAccountNumber(userDetails.getContactNumber());
 			if (dao.save(userDetails) == null)
@@ -34,7 +39,7 @@ public class AccountService {
 		try {
 			fromDb = dao.getDetailsByEmailId(loginDetails.getEmailId());
 			if (fromDb != null) {
-				if (!fromDb.getPassword().equals(loginDetails.getPassword())) {
+				if (!PasswordEncDec.bCrypter(loginDetails.getPassword(), fromDb.getPassword())) {
 					return new BaseResponse("wrong password", 401);
 				}
 			} else
@@ -42,7 +47,7 @@ public class AccountService {
 		} catch (Exception e) {
 			throw new LoanAppException("Exception occured while login the user ", e);
 		}
-		return new BaseResponse("Successfull login", 200, fromDb);
+		return new BaseResponse("Successfull login", 200, jwtUtil.generateToken(fromDb.getEmailId()), fromDb);
 	}
 
 	public BaseResponse updateProfile(UserDetails details) throws LoanAppException {

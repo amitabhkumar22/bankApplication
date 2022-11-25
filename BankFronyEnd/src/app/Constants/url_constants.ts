@@ -9,5 +9,6 @@ export class url_constants {
 
     //loan
     public static GETLOANS = url_constants.LOAN + "getloanddetails?accountType=";
-
+    public static GETAPPLIEDLOANS = url_constants.LOAN + "getappliedloans?profileId=";
+    public static GETAPPLIEINGLOANS = url_constants.LOAN + "applyloan";
 }
