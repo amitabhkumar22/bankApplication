@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.bankmanagemetsystemcom.repository&apos; to &apos;com.bankmanagemetsystem.repository&apos;&#x0D;&#x0A;- Original project: &apos;BankManagementSystem&apos;&#x0D;&#x0A;- Original element: &apos;BankManagementSystem/src/main/java/com.bankmanagemetsystemcom.repository&apos;&#x0D;&#x0A;- Renamed element: &apos;BankManagementSystem/src/main/java/com.bankmanagemetsystem.repository&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.bankmanagemetsystemcom.repository&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;com.bankmanagemetsystemcom.repository" name="com.bankmanagemetsystem.repository" qualified="false" references="true" stamp="1669048352192" textual="false" version="1.0"/>
+</session>

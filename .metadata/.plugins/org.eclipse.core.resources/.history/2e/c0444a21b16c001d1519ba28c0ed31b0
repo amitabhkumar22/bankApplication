@@ -1,0 +1,35 @@
+package com.bankmanagemetsystem.servicestest;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.SpringBootConfiguration;
+
+import com.bankmanagemetsystem.repository.AccountDao;
+import com.bankmanagemetsystem.services.AccountService;
+
+@SpringBootConfiguration
+@ExtendWith(MockitoExtension.class)
+public class AccountServiceTest {
+
+	@InjectMocks
+	private AccountService service;
+
+	@Mock
+	private AccountDao dao;
+
+	@Test
+	public void myTest() {
+		assertNotNull(service);
+		assertNotNull(dao);
+	}
+
+	@Test
+	public void updateProfileTest() {
+		when
+	}
+}

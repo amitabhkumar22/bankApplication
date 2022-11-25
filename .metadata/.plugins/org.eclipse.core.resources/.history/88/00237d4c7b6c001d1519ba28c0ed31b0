@@ -1,0 +1,13 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: ApiGateWay
+  cloud:
+    gateway:
+      routes:
+      - id: BANK_MANAGEMENT_SYSTEM
+        uri: lb://BANK_MANAGEMENT_SYSTEM
+        predicates:
+        - Path=/account/**
+        - Path=/bank/**

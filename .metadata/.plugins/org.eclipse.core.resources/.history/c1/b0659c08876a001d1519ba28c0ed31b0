@@ -1,0 +1,5 @@
+package com.bankmanagemetsystem.repository;
+
+public class LoanDao {
+
+}

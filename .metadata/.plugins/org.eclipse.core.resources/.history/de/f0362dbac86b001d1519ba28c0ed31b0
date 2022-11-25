@@ -1,0 +1,60 @@
+package com.bankmanagemetsystem.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bankmanagemetsystem.models.BaseResponse;
+import com.bankmanagemetsystem.models.LoginDetails;
+import com.bankmanagemetsystem.models.UserDetails;
+import com.bankmanagemetsystem.services.AccountService;
+
+@RestController
+@RequestMapping("/account")
+public class AccountController {
+
+	@Autowired
+	private AccountService service;
+
+	@PostMapping(value = "/registration", headers = "Accept=application/json")
+	public BaseResponse registerUser(@RequestBody UserDetails userDetails) {
+		BaseResponse customResponse = null;
+		try {
+			customResponse = service.registerUser(userDetails);
+		} catch (Exception e) {
+			System.out.println("Exception occured while registering the user controller");
+		}
+		return customResponse;
+	}
+
+	@PostMapping(value = "/login", headers = "Accept=application/json")
+	public BaseResponse login(@RequestBody LoginDetails loginDetails) {
+
+		try {
+			return service.login(loginDetails);
+		} catch (Exception e) {
+			System.out.println("Exception occured while login using password the user controller");
+		}
+		return new BaseResponse("Something went wrong", 500);
+	}
+
+	@PutMapping(value = "/updateprofile", headers = "Accept=application/json")
+	public BaseResponse updateProfile(@RequestBody UserDetails details) {
+		try {
+			return service.updateProfile(details);
+		} catch (Exception e) {
+			System.out.println("Exception occured while updating the profile user controller");
+		}
+		return new BaseResponse("Something went wrong", 500);
+	}
+
+	@GetMapping("/testing")
+	public String testing() {
+		return "working";
+	}
+}

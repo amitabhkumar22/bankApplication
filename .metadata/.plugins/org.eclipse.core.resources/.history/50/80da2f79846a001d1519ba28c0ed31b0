@@ -1,0 +1,32 @@
+package com.bankmanagemetsystem.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.bankmanagemetsystem.exception.LoanAppException;
+import com.bankmanagemetsystem.models.BaseResponse;
+import com.bankmanagemetsystem.models.LoanDetails;
+import com.bankmanagemetsystem.repository.BankDao;
+
+public class BankService {
+	@Autowired
+	private BankDao dao;
+
+	public BaseResponse createBaseData(List<LoanDetails> details) {
+		if (!dao.saveAll(details).isEmpty()) {
+			return new BaseResponse("updated", 200);
+		}
+		return new BaseResponse("fail", 200);
+	}
+
+	public List<LoanDetails> getAllTypeLoanDetails() {
+		try {
+			return dao.findAll();
+		} catch (Exception e) {
+			throw new LoanAppException("Exception occured while registering the user ", e);
+		}
+		return new BaseResponse("Successfully registered", 200);
+	}
+
+}

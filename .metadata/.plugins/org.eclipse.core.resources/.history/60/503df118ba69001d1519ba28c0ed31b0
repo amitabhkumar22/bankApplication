@@ -1,0 +1,9 @@
+package com.bankmanagemetsystemcom.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.bankmanagemetsystem.models.UserDetails;
+
+public interface BankDao extends JpaRepository<UserDetails, Integer> {
+
+}

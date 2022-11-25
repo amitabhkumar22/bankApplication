@@ -1,0 +1,67 @@
+package com.bankmanagemetsystem.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user_loan_details")
+public class LoanDetails {
+
+	@Id
+	int id;
+	String accountType;
+	float rateOfIntrest;
+	double amount;
+	String years;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
+	public float getRateOfIntrest() {
+		return rateOfIntrest;
+	}
+
+	public void setRateOfIntrest(float rateOfIntrest) {
+		this.rateOfIntrest = rateOfIntrest;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getYears() {
+		return years;
+	}
+
+	public void setYears(String years) {
+		this.years = years;
+	}
+
+	public LoanDetails(int id, String accountType, float rateOfIntrest, double amount, String years) {
+		super();
+		this.id = id;
+		this.accountType = accountType;
+		this.rateOfIntrest = rateOfIntrest;
+		this.amount = amount;
+		this.years = years;
+	}
+
+}

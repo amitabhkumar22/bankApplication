@@ -1,0 +1,59 @@
+package com.bankmanagemetsystem.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bankmanagemetsystem.exception.LoanAppException;
+import com.bankmanagemetsystem.models.BaseResponse;
+import com.bankmanagemetsystem.models.LoginDetails;
+import com.bankmanagemetsystem.models.UserDetails;
+import com.bankmanagemetsystem.repository.AccountDao;
+
+@Service
+public class AccountService {
+
+	@Autowired
+	private AccountDao dao;
+
+	public BaseResponse registerUser(UserDetails userDetails) throws LoanAppException {
+
+		try {
+			userDetails.setCreatedTimeStamp(System.currentTimeMillis());
+			if (dao.save(userDetails) == null)
+				return new BaseResponse("Something went wrong", 500);
+		} catch (Exception e) {
+			throw new LoanAppException("Exception occured while registering the user ", e);
+		}
+		return new BaseResponse("Successfully registered", 200);
+
+	}
+
+	public BaseResponse login(LoginDetails loginDetails) throws LoanAppException {
+		UserDetails fromDb = null;
+		try {
+			fromDb = dao.getDetailsByEmailId(loginDetails.getEmailId());
+			if (fromDb != null) {
+				if (!fromDb.getPassword().equals(loginDetails.getPassword())) {
+					return new BaseResponse("wrong password", 200);
+				}
+			} else
+				return new BaseResponse("not registred or email entered wrong", 200);
+		} catch (Exception e) {
+			throw new LoanAppException("Exception occured while login the user ", e);
+		}
+		return new BaseResponse("Successfull login", 200, fromDb);
+	}
+
+	public BaseResponse updateProfile(UserDetails details) throws LoanAppException {
+		UserDetails fromDb = null;
+		try {
+			fromDb = dao.getDetailsByEmailId(details.getEmailId());
+			details.setPassword(fromDb.getPassword());
+			if (dao.save(details) != null)
+				return new BaseResponse("profile update successful", 200);
+		} catch (Exception e) {
+			throw new LoanAppException("Exception occured while update profile the user ", e);
+		}
+		return new BaseResponse("update fail", 200);
+	}
+}

@@ -1,0 +1,45 @@
+package com.bankmanagemetsystem.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bankmanagemetsystem.exception.LoanAppException;
+import com.bankmanagemetsystem.models.BaseResponse;
+import com.bankmanagemetsystem.models.LoginDetails;
+import com.bankmanagemetsystem.models.UserDetails;
+import com.bankmanagemetsystemcom.repository.AccountDao;
+
+@Service
+public class AccountService {
+
+	@Autowired
+	private AccountDao dao;
+
+	public BaseResponse registerUser(UserDetails userDetails) throws LoanAppException {
+
+		try {
+			if (dao.save(userDetails) == null)
+				return new BaseResponse("Something went wrong", 500);
+		} catch (Exception e) {
+			throw new LoanAppException("Exception occured while registering the user ", e);
+		}
+		return new BaseResponse("Successfully registered", 200);
+
+	}
+
+	public LoginResponse login(LoginDetails loginDetails) throws LoanAppException {
+		try {
+			UserDetails fromDb = dao.getDetailsByEmailId(loginDetails.getEmailId());
+			if (fromDb != null) {
+				// create sessionId
+				return PasswordEncDec.bCrypter(loginDetails.getPassword(), fromDb.getPassword())
+						? new LoginResponse(ResponseConstants.LOGIN_SUCCESS, ResponseConstants.STATUS200, "sessionId",
+								fromDb)
+						: new LoginResponse(ResponseConstants.WRONG_PASSWORD, ResponseConstants.STATUS404);
+			} else
+				return new LoginResponse(ResponseConstants.EMAIL_DOESNT_EXIST, ResponseConstants.STATUS404);
+		} catch (Exception e) {
+			throw new LoanAppException("Exception occured while login the user ", e);
+		}
+	}
+}

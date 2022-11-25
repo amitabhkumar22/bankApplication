@@ -1,0 +1,92 @@
+package com.bankmanagemetsystem.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user_loan_details")
+public class UserLoans extends LoanDetails {
+
+	@Id
+	int profileId;
+	int id;
+	String accountType;
+	float rateOfIntrest;
+	double amount;
+	String years;
+	long loanTakenDate;
+
+	public int getProfileId() {
+		return profileId;
+	}
+
+	public void setProfileId(int profileId) {
+		this.profileId = profileId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
+	public float getRateOfIntrest() {
+		return rateOfIntrest;
+	}
+
+	public void setRateOfIntrest(float rateOfIntrest) {
+		this.rateOfIntrest = rateOfIntrest;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getYears() {
+		return years;
+	}
+
+	public void setYears(String years) {
+		this.years = years;
+	}
+
+	public long getLoanTakenDate() {
+		return loanTakenDate;
+	}
+
+	public void setLoanTakenDate(long loanTakenDate) {
+		this.loanTakenDate = loanTakenDate;
+	}
+
+	public UserLoans(int id, String accountType, float rateOfIntrest, double amount, String years, int profileId,
+			int id2, String accountType2, float rateOfIntrest2, double amount2, String years2, long loanTakenDate) {
+		super(id, accountType, rateOfIntrest, amount, years);
+		this.profileId = profileId;
+		id = id2;
+		accountType = accountType2;
+		rateOfIntrest = rateOfIntrest2;
+		amount = amount2;
+		years = years2;
+		this.loanTakenDate = loanTakenDate;
+	}
+
+	public UserLoans() {
+		super();
+	}
+
+}

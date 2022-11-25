@@ -1,0 +1,5 @@
+package com.bankmanagemetsystemcom.repository;
+
+public class BankDao {
+
+}

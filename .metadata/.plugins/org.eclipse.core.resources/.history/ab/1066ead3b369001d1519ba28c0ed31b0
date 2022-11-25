@@ -1,0 +1,20 @@
+package com.bankmanagemetsystem.exception;
+
+public class LoanAppException extends Exception {
+
+	public LoanAppException() {
+
+	}
+
+	public LoanAppException(String message) {
+		super(message);
+	}
+
+	public LoanAppException(Throwable e) {
+		super(e);
+	}
+
+	public LoanAppException(String message, Throwable e) {
+		super(message, e);
+	}
+}

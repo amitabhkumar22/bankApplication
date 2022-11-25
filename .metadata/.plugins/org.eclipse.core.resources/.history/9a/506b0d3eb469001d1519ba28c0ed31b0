@@ -1,0 +1,8 @@
+package com.bankmanagemetsystem.models;
+
+public class BaseResponse {
+
+	private String statusMessage;
+	private int statusCode;
+
+}
