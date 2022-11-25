@@ -24,6 +24,9 @@ export class CreatePatientComponent implements OnInit {
 
   customer: CustomerDetails = new CustomerDetails;
   loans: LoanDetails[];
+  loanDetails: boolean = true;
+  personal: boolean = false;
+
   constructor(private customerService: CustomerService, private _router: Router) { }
 
   ngOnInit(): void {

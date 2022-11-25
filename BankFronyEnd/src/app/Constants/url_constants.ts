@@ -4,7 +4,7 @@ export class url_constants {
 
     //account
     public static LOGIN = url_constants.CUSTOMER + "login";
-    public static REGISTER = url_constants.CUSTOMER + "register";
+    public static REGISTER = url_constants.CUSTOMER + "registration";
     public static UPDATE = url_constants.CUSTOMER + "updateprofile";
 
     //loan
