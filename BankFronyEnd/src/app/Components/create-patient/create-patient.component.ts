@@ -38,6 +38,7 @@ export class CreatePatientComponent implements OnInit {
   ngOnInit(): void {
     this.personal = false;
     this.loanDetails = true;
+    this.showLoanApply = false;
     this.customer = JSON.parse(localStorage.getItem("details"));
     this.customer.accountType
     this.customerService.getLoans(this.customer.accountType)
@@ -52,6 +53,7 @@ export class CreatePatientComponent implements OnInit {
   getAppliedLoans() {
     this.loanDetails = false;
     this.personal = true;
+    this.showLoanApply = false;
     this.customerService.getAppliedLoans(this.customer.profilId)
       .subscribe(
         res => {
@@ -64,9 +66,11 @@ export class CreatePatientComponent implements OnInit {
   applyLoan(i: number) {
     this.showLoanApply = true;
     this.selectedLoan = this.loans[i];
+    console.log("selected loan " + JSON.stringify(this.appliyingLoan));
     this.appliyingLoan.accountType = this.selectedLoan.accountType
     this.appliyingLoan.amount = this.selectedLoan.amount
     this.appliyingLoan.rateOfIntrest = this.selectedLoan.rateOfIntrest
+    console.log("selected loan and details" + JSON.stringify(this.appliyingLoan));
   }
   applyingLoan() {
     this.loanDetails = false;
@@ -86,5 +90,8 @@ export class CreatePatientComponent implements OnInit {
     console.info(time)
     const date = new Date(time);
     return date.toLocaleString('sv');
+  }
+  close() {
+    this.showLoanApply = false;
   }
 }

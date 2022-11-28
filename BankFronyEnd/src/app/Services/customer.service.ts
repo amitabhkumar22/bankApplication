@@ -10,6 +10,9 @@ import { UserLoanDetails } from '../Interfaces/userLoanDetails';
   providedIn: 'root'
 })
 export class CustomerService {
+  updateProfile(customer: CustomerDetails) {
+    return this.http.put<baseResponse>(url_constants.UPDATE, customer);
+  }
 
   applyingLoan(appliyingLoan: UserLoanDetails) {
     return this.http.post<baseResponse>(url_constants.GETAPPLIEINGLOANS, appliyingLoan);

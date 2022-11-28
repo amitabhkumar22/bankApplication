@@ -5,7 +5,7 @@
             <div style="padding-left: 80px;padding-right: 80px;padding-top: 50px; ">
                 <button [disabled]="personal" (click)="getAppliedLoans()"
                     class="btn btn-primary">GetAppliedLoans</button>&nbsp;
-                <button class="btn btn-primary">EditProfile</button>&nbsp;
+                <button class="btn btn-primary" routerLink="/edit" routerLinkActive="active">EditProfile</button>&nbsp;
                 <button [disabled]="loanDetails" (click)="ngOnInit()"
                     class="btn btn-primary">GETALLLOANS</button><br><br>
                 <table *ngIf="loanDetails" class="table table-striped table-dark">
@@ -31,12 +31,15 @@
                     </tbody>
                 </table>
                 <div *ngIf="showLoanApply">
-                    <input type="text" {{appliyingLoan.accountType}} [disabled]="true">
-                    <input type="text" {{appliyingLoan.loanType}} [disabled]="true">
-                    <input type="text" {{appliyingLoan.rateOfIntrest}}%p.a [disabled]="true">
-                    <input type="text" {{appliyingLoan.amount}} [disabled]="true">
-                    <input type="text" [(ngModel)]="appliyingLoan.years" [disabled]="false">
-                    <button (click)="applyingLoan()">Apply</button>
+                    AccountType:&nbsp;<input type="text" [(ngModel)]="appliyingLoan.accountType" [disabled]="true">
+                    <br><br>LoanType:&nbsp;<input type="text" [(ngModel)]="appliyingLoan.accountType" [disabled]="true">
+                    <br><br> RateOfIntrest:&nbsp;<input type="text" [(ngModel)]="appliyingLoan.rateOfIntrest"
+                        [disabled]="true"> %p.a
+                    <br><br>Amount:&nbsp;<input type="text" [(ngModel)]="appliyingLoan.amount" [disabled]="true">
+                    <br><br>EnterForHowmanyYears:&nbsp;<input type="text" [(ngModel)]="appliyingLoan.years"
+                        [disabled]="false">
+                    <br><br><button class="btn btn-primary" (click)="applyingLoan()">Apply</button>
+                    &nbsp;<button class="btn btn-primary" (click)="close()">Close</button>
                 </div>
                 <table *ngIf="personal" class="table table-striped table-dark">
                     <thead>

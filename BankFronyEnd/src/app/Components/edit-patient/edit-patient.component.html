@@ -1,61 +1,57 @@
 <app-header></app-header>
 <div class="card text-center">
   <div class="card-header">
-    Edit Patient
+    Edit User
   </div>
-  <div class="card-body" [formGroup]="editPatient">
+  <div class="card-body">
     <div class="row">
-      <div class="col-md-3 text-field">Patient Name : </div>
+      <div class="col-md-3 text-field">User Name : </div>
       <div class="col-md-4 mb-3">
-        <input class="form-control" type="text" placeholder="Ex: Ravi" formControlName="patientName">
+        <input class="form-control" type="text" [(ngModel)]="customer.userName">
       </div>
     </div>
     <div class="row">
       <div class="col-md-3 text-field">Address : </div>
       <div class="col-md-4 mb-3">
-        <input class="form-control" type="text" placeholder="Ex: Guntur" formControlName="patientAddress">
+        <input class="form-control" type="text" [(ngModel)]="customer.address">
       </div>
     </div>
     <div class="row">
       <div class="col-md-3 text-field">Date of Birth : </div>
       <div class="col-md-4 mb-3">
-        <input class="form-control" type="date" formControlName="patientDateOfBirth">
+        <input class="form-control" type="date" [(ngModel)]="customer.dob">
         <!-- value="{{ editPatient.get('patientDateOfBirth').value | date:'MM-dd-yyyy' }}"> -->
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 text-field">Email Id : </div>
-      <div class="col-md-4 mb-3">
-        <input class="form-control" type="email" placeholder="Ex: abc@gmail.com" formControlName="patientEmail">
       </div>
     </div>
     <div class="row">
       <div class="col-md-3 text-field">Phone Number : </div>
       <div class="col-md-4 mb-3">
-        <input class="form-control" type="text" placeholder="Ex: 987654321" formControlName="patientContactNumber">
+        <input class="form-control" type="text" [(ngModel)]="customer.contactNumber">
       </div>
     </div>
-    <div class="row" *ngIf="edit">
-      <div class="col-md-3 text-field">Drug Id : </div>
+    <div class="row">
+      <div class="col-md-3 text-field">State : </div>
       <div class="col-md-4 mb-3">
-        <input class="form-control" type="text" placeholder="Ex: 4444-444-444" formControlName="patientDrugId">
+        <input class="form-control" type="text" [(ngModel)]="customer.state">
       </div>
     </div>
-    <div class="row" *ngIf="edit">
-      <div class="col-md-3 text-field">Drug Name : </div>
+    <div class="row">
+      <div class="col-md-3 text-field">Country : </div>
       <div class="col-md-4 mb-3">
-        <input class="form-control" type="text" placeholder="Ex: Dolo" formControlName="patientDrugName">
+        <input class="form-control" type="text" [(ngModel)]="customer.country">
       </div>
     </div>
-    <div class="row" *ngIf="!edit">
+    <div class="row">
       <div class="col-md-6"></div>
-      <button mat-raised-button class="button-css col-md-2 save-css" (click)="changeEditForSave()">Save</button>
+      <button mat-raised-button class="button-css col-md-2 save-css" (click)="updateProfile()">Update</button>
+      <button mat-raised-button class="button-css col-md-2 save-css" routerLink="/create"
+        routerLinkActive="active">Close</button>
     </div>
-    <div class="row" *ngIf="edit">
+    <!-- <div class="row" *ngIf="edit">
       <div class="col-md-4"></div>
       <button mat-raised-button class="button-css col-md-2 edit-css" (click)="changeEditForEdit()">Edit</button>
       <button mat-raised-button class="button-css col-md-2" (click)="saveEditPatient()">Submit</button>
-    </div>
+    </div> -->
   </div>
 </div>
 <app-footer></app-footer>

@@ -14,7 +14,7 @@ import com.bankmanagemetsystem.models.UserDetails;
 import com.bankmanagemetsystem.services.AccountService;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/account ")
 //@CrossOrigin("*")
 public class AccountController {
 

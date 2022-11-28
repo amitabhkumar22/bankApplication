@@ -17,7 +17,7 @@ import com.bankmanagemetsystem.models.UserLoans;
 import com.bankmanagemetsystem.services.BankService;
 
 @RestController
-@RequestMapping("/bank")
+@RequestMapping("/bank ")
 public class BankController {
 
 	@Autowired
